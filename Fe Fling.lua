@@ -1,4 +1,3 @@
--- Made By JackMcJagger15
 local FlingKill = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local Label = Instance.new("Frame")
@@ -12,11 +11,15 @@ local NameOfGui = Instance.new("TextLabel")
 local Exit = Instance.new("TextButton")
 local UPArrow = Instance.new("TextButton")
 local DownArrow = Instance.new("TextButton")
-
+local userName = Instance.new("TextBox")
 -- Properties
 
 FlingKill.Name = "Fling/Kill"
 FlingKill.Parent = game.CoreGui
+
+userName.Name = "PlayerName"
+userName.Parent = FlingKill
+userName.Draggable = true
 
 Main.Name = "Main"
 Main.Parent = FlingKill
@@ -153,43 +156,43 @@ val.Value = 5
 Exit.MouseButton1Click:connect(function()
 FlingKill.Enabled = false
 end)
-
+local plAyEr = game.Players[username.Text]
 StartKill.MouseButton1Click:connect(function()
 game:GetService('RunService').Stepped:connect(function()
-if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-game.Players.LocalPlayer.Character.Head.CanCollide = false
-game.Players.LocalPlayer.Character.Torso.CanCollide = false
-game.Players.LocalPlayer.Character["Left Leg"].CanCollide = false
-game.Players.LocalPlayer.Character["Right Leg"].CanCollide = false
+if plAyEr.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+plAyEr.Character.Head.CanCollide = false
+plAyEr.Character.Torso.CanCollide = false
+plAyEr.Character["Left Leg"].CanCollide = false
+plAyEr.Character["Right Leg"].CanCollide = false
 else
-if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-game.Players.LocalPlayer.Character.Head.CanCollide = false
-game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
-game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
-game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+if plAyEr.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+plAyEr.Character.Head.CanCollide = false
+plAyEr.Character.UpperTorso.CanCollide = false
+plAyEr.Character.LowerTorso.CanCollide = false
+plAyEr.Character.HumanoidRootPart.CanCollide = false
 end
 end
 end)
 wait(.1)
 local bambam = Instance.new("BodyThrust")
-bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bambam.Parent = plAyEr.Character.HumanoidRootPart
 bambam.Force = Vector3.new(power,0,power)
-bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+bambam.Location = plAyEr.Character.HumanoidRootPart.Position
 end)
 
 StopKill.MouseButton1Click:connect(function()
 active = false
-game.Players.LocalPlayer.Character.HumanoidRootPart.BodyThrust:Remove()
+plAyEr.Character.HumanoidRootPart.BodyThrust:Remove()
 end)
 
 UPArrow.MouseButton1Click:connect(function()
 power = power + 100
-game.Players.LocalPlayer.Number.Value = game.Players.LocalPlayer.Number.Value + 1
-CurrentPower.Text = "Current Power = " .. game.Players.LocalPlayer.Number.Value
+plAyEr.Number.Value = plAyEr.Number.Value + 1
+CurrentPower.Text = "Current Power = " .. plAyEr.Number.Value
 end)
 
 DownArrow.MouseButton1Click:connect(function()
 power = power - 100
-game.Players.LocalPlayer.Number.Value = game.Players.LocalPlayer.Number.Value - 1
-CurrentPower.Text = "Current Power = " .. game.Players.LocalPlayer.Number.Value
+plAyEr.Number.Value = plAyEr.Number.Value - 1
+CurrentPower.Text = "Current Power = " .. plAyEr.Number.Value
 end)
